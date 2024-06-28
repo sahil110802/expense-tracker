@@ -45,7 +45,7 @@ export default function SideNav({}: Props) {
     <div className=' mt-5'>{menuList.map((menu,index)=>(
       <h2 key={index} className={`flex mb-2 gap-2 items-center text-white font-medium p-5 
       cursor-pointer rounded-md hover:bg-blue-200 hover:text-blue-600 
-      ${path==menu.path&& 'text-blue-700 bg-blue-200'}`}>
+      ${path==menu.path&& 'text-blue-800 bg-blue-200'}`}>
         <menu.icon/> 
         {menu.name}</h2>
     ))}</div>
