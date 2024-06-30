@@ -7,7 +7,7 @@ import { Budgets, Expenses } from '@/app/utils/schema'
 import { useUser } from '@clerk/nextjs'
 import BudgetItem from './BudgetItem';
 import { PgInteger } from 'drizzle-orm/pg-core';
-
+import moment from 'moment';
 type Props = {}
 
 export default function BudgetList({}: Props) {
@@ -41,7 +41,10 @@ export default function BudgetList({}: Props) {
 
               </div>
             ))
+
+            
           }
+          
         </div>
         </div>
   )

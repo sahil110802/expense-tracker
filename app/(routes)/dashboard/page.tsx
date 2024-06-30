@@ -1,16 +1,15 @@
+import { useUser } from '@clerk/nextjs';
 import React from 'react'
-import Header from '../../_components/Header'
-import SideNav from './_components/SideNav'
 
 type Props = {}
 
-const page = (props: Props) => {
-  return (
-    <section className=" text-white">
-      dsaasssh
-  
-</section>
-  )
-}
+export default function Dashboard({}: Props) {
+  const { user } = useUser();
 
-export default page
+  return (
+    <div className="p-5">
+      
+      <h2>Hi, {user?.fullName}</h2>
+    </div>
+  );
+}

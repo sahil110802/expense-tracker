@@ -30,6 +30,9 @@ export default function CreateBudget({}: Props) {
   const [name, setName] = useState<string>();
   const [amount, setAmount] = useState<number|any>();
   const {user}=useUser();
+
+
+  
   const onCreateBudget=async()=>{
     const result=await db.insert(Budgets)
     .values({

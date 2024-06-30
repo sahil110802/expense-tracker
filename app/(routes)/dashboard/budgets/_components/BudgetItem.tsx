@@ -4,8 +4,12 @@ import React from 'react'
 type Props = {}
 
 export default function BudgetItem({budget}: any) {
+    const calcProgress=()=>{
+        const perc=(budget?.totalSpend/budget?.amount)*100;
+        return perc.toFixed(2);
+    }
   return (
-    <Link href={'/dashboard/expenses/'+budget?.id} className='border-black rounded-lg hover:shadow-lg hover:border-green-400 cursor-pointer border p-5 bg-cyan-800'>
+    <Link href={'/dashboard/expenses/'+budget?.id} className='h-[170px] border-black rounded-lg hover:shadow-lg hover:border-green-400 cursor-pointer border p-5 bg-cyan-800'>
     <div className=' flex justify-between'>
         <div className='flex'>
             <div className='text-3xl'>
@@ -29,7 +33,7 @@ export default function BudgetItem({budget}: any) {
 
             </div>
             <div className='bg-gray-400 rounded-full w-full h-2'>
-                <div className='w-[50%] bg-blue-700 h-2'></div>
+                <div className= 'bg-blue-700 h-2 max-w-[100%]' style={{width: `${calcProgress()}%`}}></div>
             </div>
         </div>
     
