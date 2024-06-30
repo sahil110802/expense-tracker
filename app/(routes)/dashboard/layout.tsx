@@ -36,7 +36,7 @@ export default function DashboardLayout({
       <div className='fixed md:w-64 hidden md:block bg-gray-900 '>
         <SideNav/>
       </div>
-    <div className='md:ml-64 bg-gray-500 h-screen'><DashboardHeader/>{children}</div>
+    <div className='md:ml-64 bg-gray-500 min-h-screen h-full'><DashboardHeader/>{children}</div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ type Props = {}
 const page = (props: Props) => {
   return (
     <section className=" text-white">
-      dsasssh
+      dsaasssh
   
 </section>
   )

@@ -8,6 +8,14 @@ export const Budgets = pgTable('budgets', {
   createdBy:varchar('createdBy').notNull(),
 });
 
+export const Expenses=pgTable('expenses',{
+  id:serial('id').primaryKey(),
+  name:varchar('name').notNull(),
+  amount:integer('amount').notNull(),
+  budgetId:integer('budgetId').references(()=>Budgets.id),
+  createdBy:varchar('createdBy').notNull(),
+})
+
 
 
 // export type InsertUser = typeof usersTable.$inferInsert;
