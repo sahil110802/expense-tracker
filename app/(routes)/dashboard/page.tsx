@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useUser } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
@@ -54,22 +55,25 @@ useEffect(() => {
   return (
     <div className="p-8">
       <h2 className="text-3xl font-bold">Hi, {user?.fullName} 💸</h2>
-      <p>Here's what happening with your money, Lets manage your expenses.</p>
+      <p>
+        Here&apos;s what happening with your money, Lets manage your expenses.
+      </p>
       <CardInfo budgetList={budgetList} />
       <div className=" grid grid-cols-1 md:grid-cols-3 mt-3">
         <div className="md:col-span-2 bg-gray-300 p-2">
           <h2 className="text-2xl font-bold">Activity</h2>
-          <BarChartDashboard budgetList={budgetList}/>
-          <ExpenseList expenseList={expensesList} refreshData={()=>getBudgetList()}/>
+          <BarChartDashboard budgetList={budgetList} />
+          <ExpenseList
+            expenseList={expensesList}
+            refreshData={() => getBudgetList()}
+          />
         </div>
         <div>
           <h2 className="text-2xl m-3 font-bold">Latest Budgets</h2>
-       
-         {budgetList.map((budget,index)=>(
-          
-            <BudgetItem key={index} budget={budget}/>
-          
-         ))}
+
+          {budgetList.map((budget, index) => (
+            <BudgetItem key={index} budget={budget} />
+          ))}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Menu, PiggyBank, Wallet } from "lucide-react";
 import React, { useEffect, useState } from "react";
