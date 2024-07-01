@@ -51,7 +51,7 @@ export default function SideNav({}: Props) {
         {menu.name}</h2></Link>
     ))}</div>
     <div className='flex fixed bottom-10 p-5 gap-3'>
-      <UserButton/><h1>Profile</h1>
+      <UserButton/><h1 className='text-white'>Profile</h1>
     </div>
     </div>
   )

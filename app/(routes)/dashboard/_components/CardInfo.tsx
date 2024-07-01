@@ -13,7 +13,7 @@ export default function CardInfo({ budgetList }: Props) {
   const CalculateCardInfo = () => {
     let tBudget = 0;
     let tSpend = 0;
-    budgetList.forEach((element) => {
+    budgetList.forEach((element:any) => {
       tBudget = tBudget + Number(element.amount);
       tSpend = tSpend + element.totalSpend;
     });
