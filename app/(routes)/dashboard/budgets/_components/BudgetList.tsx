@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import CreateBudget from './CreateBudget'
 import { db } from '@/app/utils/db'
-import { desc, eq, getTableColumns, sql } from 'drizzle-orm'
+import { SQLWrapper, desc, eq, getTableColumns, sql } from 'drizzle-orm'
 import { Budgets, Expenses } from '@/app/utils/schema'
 import { useUser } from '@clerk/nextjs'
 import BudgetItem from './BudgetItem';
@@ -17,7 +17,7 @@ export default function BudgetList({}: Props) {
   useEffect(() => {
     user&&getBudgetList();
   }, [user])
-  
+  const userAddress: any = user?.primaryEmailAddress?.emailAddress;
   const getBudgetList=async()=>{
     const result=await db.select({
       ...getTableColumns(Budgets),
@@ -25,7 +25,7 @@ export default function BudgetList({}: Props) {
       totalItem:sql `count(${Expenses.id})`.mapWith(Number),
     }).from(Budgets)
     .leftJoin(Expenses,eq(Budgets.id,Expenses.budgetId))
-    .where(eq(Budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
+    .where(eq(Budgets.createdBy,userAddress))
     .groupBy(Budgets.id)
     .orderBy(desc(Budgets.id));
     // console.log(result);

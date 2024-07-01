@@ -20,13 +20,15 @@ export default function ExpensesScreen({ params }: any) {
   const { user } = useUser();
   const route=useRouter();
   const [budgetInfo, setBudgetInfo] = useState();
-  const [expenseList, setExpenseList] = useState<[] | any>([]);
+  const [expenseList, setExpenseList] = useState<[]>([]);
   useEffect(() => {
     user && getBudgetInfo();
   }, [user]);
 
   const getBudgetInfo = async () => {
-    const result = await db
+  const userAddress: any = user?.primaryEmailAddress?.emailAddress;
+  const budgetId: any = Budgets.id;
+    const result:any = await db
       .select({
         ...getTableColumns(Budgets),
         totalSpend: sql`sum(cast(${Expenses.amount} as decimal))`.mapWith(
@@ -36,8 +38,8 @@ export default function ExpensesScreen({ params }: any) {
       })
       .from(Budgets)
       .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
-      .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
-      .where(eq(Budgets.id, params.id))
+      .where(eq(Budgets.createdBy, userAddress) && eq(budgetId, params.id))
+      // .where(eq(budgetId, params.id))
       .groupBy(Budgets.id);
     // console.log(result);
     setBudgetInfo(result[0]);
@@ -45,7 +47,7 @@ export default function ExpensesScreen({ params }: any) {
   };
 
   const getExpenseList = async () => {
-    const result = await db
+    const result:any = await db
       .select()
       .from(Expenses)
       .where(eq(Expenses.budgetId, params.id))

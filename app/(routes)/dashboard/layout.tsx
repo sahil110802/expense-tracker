@@ -22,9 +22,11 @@ export default function DashboardLayout({
   }, [user])
   
   const checkUserBudgets=async()=>{
+  const userAddress: any = user?.primaryEmailAddress?.emailAddress;
+
     const result=await db.select()
     .from(Budgets)
-    .where(eq(Budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
+    .where(eq(Budgets.createdBy,userAddress))
 
     if(result.length==0){
       router.replace('/dashboard/budgets');

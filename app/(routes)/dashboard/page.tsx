@@ -17,6 +17,8 @@ export default function Dashboard({}: Props) {
   const [expensesList, setExpensestList] = useState<any[]>([]);
 
   const getBudgetList = async () => {
+  const userAddress: any = user?.primaryEmailAddress?.emailAddress;
+
     const result = await db
       .select({
         ...getTableColumns(Budgets),
@@ -27,7 +29,7 @@ export default function Dashboard({}: Props) {
       })
       .from(Budgets)
       .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
-      .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
+      .where(eq(Budgets.createdBy, userAddress))
       .groupBy(Budgets.id)
       .orderBy(desc(Budgets.id));
       // console.log(result);
@@ -36,6 +38,8 @@ export default function Dashboard({}: Props) {
   };
 
   const getAllExpenses=async()=>{
+  const userAddress: any = user?.primaryEmailAddress?.emailAddress;
+
     const result=await db.select({
       id:Expenses.id,
       name:Expenses.name,
@@ -43,7 +47,7 @@ export default function Dashboard({}: Props) {
       createdAt:Expenses.createdAt
     }).from(Budgets)
     .rightJoin(Expenses,eq(Budgets.id, Expenses.budgetId))
-    .where(eq(Budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
+    .where(eq(Budgets.createdBy,userAddress))
     .orderBy(desc(Expenses.id));
     // console.log(result);
     setExpensestList(result);
