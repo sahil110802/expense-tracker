@@ -6,14 +6,14 @@ import { toast } from "@/components/ui/use-toast";
 import React, { useState } from "react";
 import moment from 'moment'
 type Props = {
-  budgetId:string;
+  budgetId:string|any;
   user:any;
   refreshData:()=>void;
 };
 
 export default function AddExpenses({budgetId,user,refreshData}:Props) {
-    const [name,setName] = useState<string>();
-    const [amount, setAmount] = useState<string>();
+    const [name,setName] = useState<string|any>();
+    const [amount, setAmount] = useState<string|any>();
 
     const addExpense=async()=>{
         const result = await db.insert(Expenses).values({

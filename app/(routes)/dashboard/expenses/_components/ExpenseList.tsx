@@ -6,7 +6,7 @@ import { Trash } from "lucide-react";
 import React from "react";
 
 type Props = {
-    expenseList:Object,
+    expenseList:Object|any,
     refreshData:()=>void,
 };
 
@@ -34,7 +34,7 @@ export default function ExpenseList({ expenseList, refreshData }: Props) {
           <h2>Date</h2>
           <h2>Action</h2>
         </div>
-        {expenseList.map((expenses, index) => (
+        {expenseList.map((expenses:any, index:any) => (
           <div
             key={index}
             className={`grid grid-cols-4 ${index%2===0?'bg-gray-400':'bg-gray-800'} text-white p-2`}
