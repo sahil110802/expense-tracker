@@ -28,7 +28,6 @@ export default function DashboardLayout({
     if(result.length==0){
       router.replace('/dashboard/budgets');
     }
-    console.log(user);
   }
     
   return (

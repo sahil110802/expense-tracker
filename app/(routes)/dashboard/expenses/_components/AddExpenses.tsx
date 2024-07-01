@@ -23,7 +23,9 @@ export default function AddExpenses({budgetId,user,refreshData}:Props) {
           createdAt: moment().format('DD/MM/yyy'),
         }).returning({insertedId:Budgets.id})
 
-        console.log(result);
+        setAmount('');
+        setName('');
+        // console.log(result);
         if(result){
             refreshData(),
               toast({
@@ -39,6 +41,7 @@ export default function AddExpenses({budgetId,user,refreshData}:Props) {
         <Input
           placeholder="eg. Electricity bill"
           className="border-black"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
@@ -47,6 +50,7 @@ export default function AddExpenses({budgetId,user,refreshData}:Props) {
         <Input
           placeholder="eg. $500"
           type="number"
+          value={amount}
           className="border-black"
           onChange={(e) => setAmount(e.target.value)}
         />

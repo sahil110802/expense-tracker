@@ -1,5 +1,6 @@
 'use client';
 import { UserButton } from '@clerk/nextjs'
+import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React, { useEffect } from 'react'
 
@@ -36,18 +37,18 @@ export default function SideNav({}: Props) {
 
   const path=usePathname();
   useEffect(() => {
-    console.log(path);
   }, [path])
   
   return (
     <div className='h-screen'>
       <div>S</div>
     <div className=' mt-5'>{menuList.map((menu,index)=>(
-      <h2 key={index} className={`flex mb-2 gap-2 items-center text-white font-medium p-5 
+      <Link key={index} href={menu.path}>
+      <h2  className={`flex mb-2 gap-2 items-center text-white font-medium p-5 
       cursor-pointer rounded-md hover:bg-blue-200 hover:text-blue-600 
       ${path==menu.path&& 'text-blue-800 bg-blue-200'}`}>
         <menu.icon/> 
-        {menu.name}</h2>
+        {menu.name}</h2></Link>
     ))}</div>
     <div className='flex fixed bottom-10 p-5 gap-3'>
       <UserButton/><h1>Profile</h1>

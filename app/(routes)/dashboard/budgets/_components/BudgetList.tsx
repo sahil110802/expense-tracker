@@ -27,6 +27,7 @@ export default function BudgetList({}: Props) {
     .where(eq(Budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
     .groupBy(Budgets.id)
     .orderBy(desc(Budgets.id));
+    // console.log(result);
     setBudgetList(result);
   }
   return (
