@@ -28,10 +28,11 @@ export default function SideNav({}: Props) {
     },
     {
       id:4,
-      name:'Upgrade',
+      name:'Download Expenses',
       icon:'s',
       path:'/dashboard/upgrade',
-    }
+    },
+    
     
   ]
 
